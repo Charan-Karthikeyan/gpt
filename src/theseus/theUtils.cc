@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <errno.h>
+#include <cstring>
 
 using namespace std;
 

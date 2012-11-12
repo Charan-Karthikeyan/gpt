@@ -9,6 +9,7 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <cstring>
 
 #include <theseus/theHeuristic.h>
 

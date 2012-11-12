@@ -23,8 +23,8 @@
 
 using namespace std;
 
-#include <daedalus/daeTokens.h>
 #include <daedalus/daeTypes.h>
+#include <daedalus/daeTokens.h>
 #include <daedalus/daePackage.h>
 #include <daedalus/_daeErrors.h>
 

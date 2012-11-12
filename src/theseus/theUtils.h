@@ -12,6 +12,7 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <cstdlib>
 
 void     safeRead( void *buff, const unsigned size, const unsigned num, istream& is );
 void     safeWrite( const void *buff, const unsigned size, const unsigned num, std::ostream& os );

@@ -11,6 +11,8 @@
 #include <set>
 #include <map>
 #include <vector>
+#include <cstdlib>
+#include <cstring>
 
 #include <theseus/theModel.h>
 #include <theseus/theRtStandard.h>

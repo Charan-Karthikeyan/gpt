@@ -11,6 +11,8 @@
 #include <assert.h>
 #include <set>
 #include <memory>
+#include <cstdlib>
+#include <cstring>
 
 #define MAXSZ    1024
 //#define PRINTINFO

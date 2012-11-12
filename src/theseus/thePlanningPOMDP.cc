@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <typeinfo>
+#include <climits>
 
 using namespace std;
 
