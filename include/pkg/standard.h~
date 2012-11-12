@@ -1,0 +1,17 @@
+#ifndef _STANDARD_H
+#define _STANDARD_H
+
+#include <stdlib.h>
+#include <string.h>
+
+typedef int boolean;
+
+boolean _lessThan( stateClass&, register int, register int );
+boolean _lessEqual( stateClass&, register int, register int );
+boolean _greaterEqual( stateClass&, register int, register int );
+boolean _greaterThan( stateClass&, register int, register int );
+
+int _plus( stateClass&, register int, register int, register int );
+int _minus( stateClass&, register int, register int, register int );
+
+#endif /* _STANDARD_H */

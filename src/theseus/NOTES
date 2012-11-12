@@ -1,0 +1,4 @@
+Depending on the compiler/STL version you might need to change:
+
+__simple_alloc  -->  simple_alloc   (theMemoryMgmt.h)
+

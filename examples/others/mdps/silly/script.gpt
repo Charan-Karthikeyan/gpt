@@ -1,0 +1,7 @@
+parse p1 silly.pddl
+compile p1_silly
+solve p1_silly
+generate graph p1.gml
+generate table p1.table
+shell make -f Makefile.p1_silly deep-clean
+quit

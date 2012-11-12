@@ -1,0 +1,164 @@
+# Solaris
+LDFLAGS =		-L../lib
+#LDFLAGS =		-g -L../lib
+
+# GCC Compiler
+CFLAGS	=		-Wall -c -O3 -DNDEBUG -I.. -I../include/ -DREVISION=\"$(REVISION)\" -DGNU_CC
+#CFLAGS	=		-Wall -c -g -I.. -I../include/ -DREVISION=\"$(REVISION)\" -DGNU_CC
+CC	=		g++ $(CFLAGS)
+LD	=		g++ $(LDFLAGS)
+#CC	=		/usr/local/bin/g++ $(CFLAGS)
+#LD	=		/usr/local/bin/g++ $(LDFLAGS)
+
+# SUN Compilers
+#CFLAGS	=		-c -I.. -I../include -O2
+#CFLAGS	=		-g -c -I.. -I../include -I/usr/local/include/g++ -DREVISION=\"$(REVISION)\" -DSUN_CC
+#LDFLAGS =		-L../lib
+#CC	=		/opt/SUNWspro/bin/CC $(CFLAGS)
+#LD	=		/opt/SUNWspro/bin/CC $(LDFLAGS)
+
+
+
+#
+# don't touch beyond this point
+#
+
+REVISION =		1.50
+
+DAE	=		../daedalus
+
+Hs	=		theTopLevel.h \
+			theException.h \
+			theBelief.h theSimpleBelief.h theStandardBelief.h thePlanningBelief.h \
+			theSetBelief.h theBeliefCache.h \
+			theModel.h theStandardModel.h thePlanningModel.h theNonDetModel.h\
+			thePOMDP.h theStandardPOMDP.h thePlanningPOMDP.h theSearchPOMDP.h theMDPPOMDP.h \
+			theHeuristic.h theQmdpHeuristic.h theDynHeuristic.h theLookAheadHeuristic.h \
+			theResult.h theRegister.h theHash.h \
+			theMemoryMgmt.h theUtils.h \
+			theQuantization.h \
+			theRtStandard.h theRtHash.h theRtRegister.h
+
+OBJS	=		theTopLevel.o \
+			theBelief.o theSimpleBelief.o theStandardBelief.o thePlanningBelief.o \
+			theSetBelief.o theBeliefCache.o \
+			theModel.o theStandardModel.o thePlanningModel.o theNonDetModel.o \
+			thePOMDP.o theStandardPOMDP.o thePlanningPOMDP.o theSearchPOMDP.o theMDPPOMDP.o \
+			theHeuristic.o theQmdpHeuristic.o theDynHeuristic.o theLookAheadHeuristic.o \
+			theResult.o theRegister.o theHash.o \
+			theMemoryMgmt.o theUtils.o \
+			theQuantization.o md4c.o \
+			theRtStandard.o theRtHash.o theRtRegister.o
+
+LIBS	=		-lmdp -ldl -lm
+
+
+# General
+
+compile:
+				@echo "*** Compiling `pwd`"
+				@make -f Makefile.sun gpt
+
+clean:
+				@echo "*** Cleaning `pwd`"
+				@rm -f core *~ *.o gpt
+
+
+
+# Shell
+
+gpt:				theShell.o $(OBJS) $(EOBJS)
+				$(LD) -o gpt theShell.o $(OBJS) $(EOBJS) $(LIBS) -L../readline-4.2/lib -lreadline -lcurses
+
+theShell.o:			theShell.cc theHelpMsg.dat $(Hs)
+				$(CC) -I../readline-4.2/include -DREADLINE_LIBRARY theShell.cc
+
+theTopLevel.o:			theTopLevel.cc $(Hs)
+				$(CC) theTopLevel.cc
+
+thePOMDP.o:			thePOMDP.cc $(Hs)
+				$(CC) thePOMDP.cc
+
+theStandardPOMDP.o:		theStandardPOMDP.cc $(Hs)
+				$(CC) theStandardPOMDP.cc
+
+thePlanningPOMDP.o:		thePlanningPOMDP.cc $(Hs)
+				$(CC) thePlanningPOMDP.cc
+
+theSearchPOMDP.o:		theSearchPOMDP.cc $(Hs)
+				$(CC) theSearchPOMDP.cc
+
+theMDPPOMDP.o:			theMDPPOMDP.cc $(Hs)
+				$(CC) theMDPPOMDP.cc
+
+theModel.o:			theModel.cc $(Hs)
+				$(CC) theModel.cc
+
+theStandardModel.o:		theStandardModel.cc $(Hs)
+				$(CC) theStandardModel.cc
+
+thePlanningModel.o:		thePlanningModel.cc $(Hs)
+				$(CC) thePlanningModel.cc
+
+theNonDetModel.o:		theNonDetModel.cc $(Hs)
+				$(CC) theNonDetModel.cc
+
+theBelief.o:			theBelief.cc $(Hs)
+				$(CC) theBelief.cc
+
+theSimpleBelief.o:		theSimpleBelief.cc $(Hs)
+				$(CC) theSimpleBelief.cc
+
+theStandardBelief.o:		theStandardBelief.cc $(Hs) md4.h
+				$(CC) theStandardBelief.cc
+
+thePlanningBelief.o:		thePlanningBelief.cc $(Hs) md4.h
+				$(CC) thePlanningBelief.cc
+
+theSetBelief.o:			theSetBelief.cc $(Hs) md4.h
+				$(CC) theSetBelief.cc
+	
+theBeliefCache.o:		theBeliefCache.cc $(Hs)
+				$(CC) theBeliefCache.cc
+
+theHash.o:			theHash.cc $(Hs)
+				$(CC) theHash.cc
+
+theMemoryMgmt.o:		theMemoryMgmt.cc $(Hs)
+				$(CC) theMemoryMgmt.cc
+
+theResult.o:			theResult.cc $(Hs)
+				$(CC) theResult.cc
+
+theHeuristic.o:			theHeuristic.cc $(Hs)
+				$(CC) theHeuristic.cc
+
+theQmdpHeuristic.o:		theQmdpHeuristic.cc $(Hs)
+				$(CC) theQmdpHeuristic.cc
+
+theDynHeuristic.o:		theDynHeuristic.cc $(Hs)
+				$(CC) theDynHeuristic.cc
+
+theLookAheadHeuristic.o:	theLookAheadHeuristic.cc $(Hs)
+				$(CC) theLookAheadHeuristic.cc
+
+theRegister.o:			theRegister.cc $(Hs)
+				$(CC) theRegister.cc
+
+theUtils.o:			theUtils.cc $(Hs)
+				$(CC) theUtils.cc
+
+theQuantization.o:		theQuantization.cc $(Hs)
+				$(CC) theQuantization.cc
+
+md4c.o:				md4c.c md4.h
+				$(CC) md4c.c
+
+theRtStandard.o:		theRtStandard.cc $(Hs)
+				$(CC) -fkeep-inline-functions theRtStandard.cc
+
+theRtHash.o:			theRtHash.cc $(Hs)
+				$(CC) theRtHash.cc
+
+theRtRegister.o:		theRtRegister.cc $(Hs)
+				$(CC) theRtRegister.cc

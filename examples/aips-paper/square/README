@@ -1,0 +1,3 @@
+A NxN navigation problem. The initial position
+can any of the N^2 square positions while the goal
+position is the rightmost lower corner.

@@ -1,0 +1,11 @@
+parse race racetrack.pddl
+shell g++ -O3 -c racetrack.cc -I$GPTHOME/include
+linkmap racetrack.o
+compile race_racetrack
+solve race_racetrack
+generate graph race.gml
+generate table race.table
+shell make -f Makefile.race_racetrack deep-clean
+shell rm racetrack.o
+quit
+

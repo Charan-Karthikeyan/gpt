@@ -1,0 +1,7 @@
+I have observed some strange problems in linux machines.
+These problems don't occur in my SUN. I think that they
+are due to bad float conversion/arithmetic. I don't know
+who is responsible: myself, the compiler, or the OS.
+Since I don't have a linux box, I don't expect to fix
+this in the near future.
+

@@ -1,0 +1,6 @@
+parse p6 bt.pddl
+compile p6_bt
+solve p6_bt
+shell make -f Makefile.p6_bt deep-clean
+quit
+

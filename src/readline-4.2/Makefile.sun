@@ -1,0 +1,7 @@
+compile:
+		@echo "*** Compiling all in `pwd`"
+		@(cd lib ; make -f Makefile.sun compile)
+
+clean:
+		@echo "*** Cleaning `pwd`"
+		@(cd lib ; make -f Makefile.sun clean)

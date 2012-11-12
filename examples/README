@@ -1,0 +1,8 @@
+aips-paper:	those used in the AIPS-2000 paper
+blocks:		the blocks-world with functional encodind and recursive predicates
+logistics:	functional encoding of the logistics domain
+psr:		Sylvie Thiebaux's PSR domain
+wumpus:		the codification of Russell and Norvig's wumpus world
+master-mind:	the game of Master Mind
+others:		other examples
+

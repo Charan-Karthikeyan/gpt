@@ -1,0 +1,10 @@
+parse p8 square.pddl
+shell g++ -O3 -c square.cc -I$GPTHOME/include
+linkmap square.o
+compile p8_square
+solve p8_square
+generate graph p8.gml
+generate table p8.table
+shell make -f Makefile.p8_square deep-clean
+shell rm square.o
+quit

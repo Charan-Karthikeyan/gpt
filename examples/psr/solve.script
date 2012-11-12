@@ -1,0 +1,17 @@
+#!/usr/local/bin/bash
+
+
+# solve all problems in directory
+
+for prob in $*; do
+echo problem=${prob}
+$GPTHOME/bin/gpt<<-end
+	set entry-point problemRegister__Fv
+	set incremental-mode on
+	set discretization-levels off
+	solve ${prob}
+	generate graph ${prob}.gml
+	quit
+end
+done
+

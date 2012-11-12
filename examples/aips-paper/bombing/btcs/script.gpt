@@ -1,0 +1,8 @@
+parse p6 btcs.pddl
+compile p6_btcs
+solve p6_btcs
+generate graph p6.gml
+generate table p6.table
+shell make -f Makefile.p6_btcs deep-clean
+quit
+

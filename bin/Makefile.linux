@@ -1,0 +1,8 @@
+compile:
+		@echo "*** Compiling all in `pwd`"
+		@rm -fr viewer
+		@ln -s viewer-linux viewer
+
+clean:
+		@echo "*** Cleaning `pwd`"
+		@rm -fr viewer

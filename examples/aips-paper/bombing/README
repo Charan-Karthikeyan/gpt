@@ -1,0 +1,6 @@
+bmtc_hi: 	the btc problem with multiple toilets and high uncertainty (see paper).
+bmtc_lo: 	the btc problem with multiple toilets and low uncertainty (see paper).
+bt:		the original bombing the toilet problem with several packages.
+btc:		the bt problem where the toilet gets clogged.
+btcs:		the btc problem with sensing actions.
+btuc:		the btc problem where dunking a package may clog the toilet.

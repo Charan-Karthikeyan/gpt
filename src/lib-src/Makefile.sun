@@ -1,0 +1,16 @@
+SUBDIRS = mdp
+
+compile:
+			@echo "*** Compiling all in `pwd`"
+			@for dir in $(SUBDIRS); do \
+			  (cd $$dir ; make -f Makefile compile) \
+			done
+
+
+
+clean:
+			@echo "*** Cleaning `pwd`"
+			@for dir in $(SUBDIRS); do \
+			  (cd $$dir ; make -f Makefile clean) \
+			done
+

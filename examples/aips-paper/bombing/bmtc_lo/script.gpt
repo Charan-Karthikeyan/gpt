@@ -1,0 +1,5 @@
+parse p6_4 bmtc_lo.pddl
+compile p6_4_bmtc_lo
+solve p6_4_bmtc_lo
+shell make -f Makefile.p6_4_bmtc_lo deep-clean
+quit

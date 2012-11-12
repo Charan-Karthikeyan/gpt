@@ -1,0 +1,7 @@
+The Hector Levesque Omelette's problem.
+There are three variations of the problem: an unfavorable
+one in which the probability of a good egg is .25,
+a fair one with probability .5 of good/bad egg, and
+a very favorable one with probability .95 of good egg.
+Interestingly, the first two has identical optimal
+policies different to the policy for the last variation.

@@ -1,0 +1,4 @@
+racetrack:	a variation of the racetrack problem in Barto et. al.
+square:		a probabilistic navigation problem with complete info.
+silly:		a very simple non-deterministic MDP problem.
+

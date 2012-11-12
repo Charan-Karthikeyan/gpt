@@ -1,0 +1,90 @@
+b     "  "
+n     "\n"
+t     "\t"
+q     "\""
+c     [a-zA-Z_]
+i     [0-9]
+
+%%
+
+define                 { return(DEFINE); }
+domain                 { return(DOMAIN); }
+problem                { return(PROBLEM); }
+true                   { return(TOK_BOOLEAN); }
+false                  { return(TOK_BOOLEAN); }
+
+:dynamics              { return(DYNAMICS); }
+:deterministic         { return(DETERMINISTIC); }
+:non-deterministic     { return(NON_DETERMINISTIC); }
+:probabilistic         { return(PROBABILISTIC); }
+:feedback              { return(FEEDBACK); }
+:complete              { return(COMPLETE); }
+:partial               { return(PARTIAL); }
+:null                  { return(NULLF); }
+:domain                { return(CDOMAIN); }
+:requirements          { return(REQUIREMENTS); }
+:types                 { return(TYPES); }
+:functions             { return(FUNCTIONS); }
+:predicates            { return(PREDICATES); }
+:external              { return(EXTERNAL); }
+:objects               { return(OBJECTS); }
+:action                { return(ACTION); }
+:parameters            { return(PARAMETERS); }
+:precondition          { return(PRECONDITION); }
+:effect                { return(EFFECT); }
+:cost                  { return(COST); }
+:observation           { return(OBSERVATION); }
+:when                  { return(WHEN); }
+:goal                  { return(GOAL); }
+:package               { return(PACKAGE); }
+:set                   { return(SET); }
+:in                    { return(IN); }
+:one-of                { return(ONEOF); }
+:print                 { return(PRINT); }
+:print-state           { return(PRINTSTATE); }
+:assert                { return(ASSERT); }
+:ramification          { return(RAMIFICATION); }
+:predicate             { return(PREDICATE); }
+:formula               { return(FORMULA); }
+:init                  { return(INIT); }
+:hooks                 { return(HOOKS); }
+:model                 { return(MODEL); }
+:belief                { return(BELIEF); }
+:heuristic             { return(HEURISTIC); }
+:integer               { return(INTEGER); }
+:boolean               { return(BOOLEAN); }
+:array                 { return(ARRAY); }
+:not                   { return(NOT); }
+:and                   { return(AND); }
+:or                    { return(OR); }
+:if                    { return(IF); }
+:iff                   { return(IFF); }
+:exists                { return(EXISTS); }
+:forall                { return(FORALL); }
+:sum                   { return(SUM); }
+
+"("                    { return(LEFTPAR); }
+")"                    { return(RIGHTPAR); }
+"["                    { return(LEFTSQPAR); }
+"]"                    { return(RIGHTSQPAR); }
+"{"                    { return(LEFTCURLY); }
+"}"                    { return(RIGHTCURLY); }
+"*"                    { return(STAR); }
+"+"                    { return(PLUS); }
+"-"                    { return(HYPHEN); }
+","                    { return(COMMA); }
+":"                    { return(COLON); }
+"="                    { return(EQUAL); }
+"<"                    { return(LT); }
+"<="                   { return(LE); }
+">="                   { return(GE); }
+">"                    { return(GT); }
+
+{c}({c}|{i})*          { return(TOK_FUNCTION) || return(TOK_PREDICATE) || return(TOK_IDENT) }
+\?{c}({c}|{i})*        { return(TOK_VIDENT); }
+-?{i}+                 { return(TOK_INTEGER); }
+-?{i}+\.{i}+           { return(TOK_FLOAT); }
+\"[^\"]*\"             { return(TOK_STRING); }
+.                      { return(yytext[0]); }
+
+%%

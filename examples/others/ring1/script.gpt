@@ -1,0 +1,5 @@
+parse p3 ring.pddl
+compile p3_ring
+solve p3_ring
+shell make -f Makefile.p3_ring deep-clean
+quit

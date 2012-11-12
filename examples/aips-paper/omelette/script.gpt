@@ -1,0 +1,22 @@
+set stoprule 0.00001
+set discretization-levels 80
+parse p1 omelette.pddl
+compile p1_omelette1
+solve p1_omelette1
+generate graph p1.gml
+generate table p1.table
+shell make -f Makefile.p1_omelette1 deep-clean
+parse p2 omelette.pddl
+compile p2_omelette2
+solve p2_omelette2
+generate graph p2.gml
+generate table p2.table
+shell make -f Makefile.p2_omelette2 deep-clean
+parse p3 omelette.pddl
+compile p3_omelette3
+solve p3_omelette3
+generate graph p3.gml
+generate table p3.table
+shell make -f Makefile.p3_omelette3 deep-clean
+quit
+

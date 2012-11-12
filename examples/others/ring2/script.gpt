@@ -1,0 +1,5 @@
+parse p6 ring.pddl
+compile p6_ring
+solve p6_ring
+shell make -f Makefile.p6_ring deep-clean
+quit

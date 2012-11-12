@@ -1,0 +1,169 @@
+This a binary code release of GPT for LINUX/INTEL architecture.
+It has been tested on Red Hat Linux 6.0.
+
+This is a BETA version. Documentation about GPT can be found 
+in this file and in the docs directory of this distribution.
+
+
+GENERAL PLANNING TOOL
+=====================
+
+GPT is a planner for problems involving partial information
+and uncertainty. Such problems can be divided in three types:
+conformant, contingent and probabilistic contingent (see the
+paper ijcai2001.pdf paper in the docs directory). The input
+to GPT is a planning problem encoded in an extension of the
+PDDL language that supports uncertainty and incomplete
+information. Depending on problem type, the algorithm is either
+a best first search in belief space or real-time dynamic programming.
+In any case, the solver is guided by an heuristic function
+that is automatically extracted from the problem representation.
+
+
+LICENSE
+=======
+
+This is a research/teaching only license. It cannot be used
+for commercial purposes without the consent from the authors.
+
+
+REQUIREMENTS
+============
+
+In order to use GPT you will need the GNU C/C++ g++ compiler
+and some standard unix tools like: make, ld, ...
+Be sure they are in your path before running GPT.
+
+*** NOTE: THIS DISTRIBUTION *WILL* NOT WORK WITH OTHER C/C++ COMPILER ***
+
+
+INSTALLATION
+============
+
+1) unpack distribution files, for example
+
+    $ gzip -dc gpt-<ver>-linux-binary.tar.gz | tar -xvpf -
+
+2) clean and generate necessary files
+
+    $ make -f Makefile.linux clean
+    $ make -f Makefile.linux compile
+
+3) set the var GPTHOME to the gpt directory, for example (using ksh/bash)
+
+    $ export GPTHOME=`pwd`/gpt-<ver>-linux-binary
+
+
+RUNNING SOME SAMPLES
+==================== 
+
+The sample problems are in the example directories. 
+Here is an example for solving some of them:
+
+
+1. Conformant Planning:
+
+   - change to the bombing the toilet problem directory, 
+
+     $ cd $GPTHOME/examples/aips-paper/bombing/bt
+
+   - solve a problem using the gpt script,
+
+     $ $GPTHOME/bin/gpt < script.gpt
+
+   - see the result
+
+     $ cat p6_bt.output
+
+
+2. Contingent Planning:
+
+   - change to the medical problem directory,
+
+     $ cd $GPTHOME/examples/aips-paper/medical
+
+   - solve a problem using the gpt script,
+
+     $ $GPTHOME/bin/gpt < script.gpt
+
+   - see the graph version of the optimal policy,
+
+     $ $GPTHOME/bin/viewer p5.gml 
+
+
+3. Probabilistic Contingent Planning:
+
+   - change to the omelette problem directory,
+
+     $ cd $GPTHOME/examples/aips-paper/omelette
+
+   - solve a problem using the gpt script,
+
+     $ $GPTHOME/bin/gpt < script.gpt
+
+   - see the graph version of the optimal policy,
+
+     $ $GPTHOME/bin/viewer p2.gml
+
+
+
+THE GPT SHELL
+=============
+
+The main difference between the current release and previous ones
+is the GPT shell. In this new release, all necessary steps to solve
+a problem (a .pddl file) are performed inside the gpt shell. Such steps
+are: parse the .pddl file to generate a C++ version of the problem, 
+compile the problem using the C/C++ compiler, solve the problem, and
+generate a representation of the resulting policy. The representation
+can be either policy graph, a policy table, or, in the case of conformant
+planning, a sequence of actions. For more information, use the help command
+in the gpt shell and check the examples.
+
+
+POLICY GRAPH
+============
+
+The policy graph is a labeled directed graph in which the nodes represent
+states of the controller (system states for planning with complete
+information and belief states for planning with partial information),
+and the edges represents the transition dynamics for the current policy.
+The label attached to a node is the name action given by the policy 
+in that node. The different outgoing edges represent the next controller
+states for that state/action under the different feedbacks.
+The nodes are also colored as cyan, red or yellow. The cyan color
+indicates the initial states and the yellow color the goal states.
+The other states are colored red. 
+
+The graph output is in the GML format supported by the LEDA project.
+We have included a graph viewer (a LEDA program) inside GPT that can be
+invoked from inside the GPT shell with the command 'viewer' or from the UNIX 
+shell with $GPTHOME/bin/viewer. Initially, the graph will look odd since the
+nodes are positioned at random. However, you can get a nice drawing
+of the graph using the "Layout/Spring Layouts/2D Spring Embedder" function.
+In the future, we expect to improve the viewer with functionality for
+inspecting/revealing information about the states, actions, and observations
+in the policy graph.
+
+
+STOPPING RULE
+=============
+
+Another important difference of the current release is the implementation
+of GPT's stopping rule for finishing the Real-Time Dynamic Programming
+trials once the optimal policy has been computed. Thus, the user can
+instruct the solver to compute the optimal policy for a given planning
+problem. This is the default option in GPT. See the ijcai2001-ws.pdf 
+file in the docs directory for more information.
+
+
+
+We hope you find GPT an useful tool either for research, teaching or both.
+If you have any question or comment, please do not hesitate to contact us.
+
+
+Sincerely,
+
+
+Blai Bonet         bonet@cs.ucla.edu, bonet@ldc.usb.ve
+Hector Geffner     hector@cs.ldc.usb

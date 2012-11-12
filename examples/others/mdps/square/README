@@ -1,0 +1,15 @@
+A NxN navigation problem. The initial position
+can any of the N^2 square positions while the goal
+position is the rightmost lower corner.
+
+1) Edit the Makefile and change the variable 
+   PROBS to specify the problems you want to solve.
+   The problems are defined in pddl file.
+
+2) "make compile" in order to compile the problems.
+
+3) "make solve" to solve them. The results are left
+   in result.log.
+
+The environment variable GPTFLAG can be set to "-O 1" 
+for the planner to output the solution.

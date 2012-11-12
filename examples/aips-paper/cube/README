@@ -1,0 +1,3 @@
+A NxNxN navigation problem. The initial position
+can any of the N^3 cube positions while the goal
+position is the rightmost lower inner corner.

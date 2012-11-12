@@ -1,0 +1,6 @@
+parse p5 sortnet.pddl
+compile p5_sortnet5
+solve p5_sortnet5
+shell make -f Makefile.p5_sortnet5 deep-clean
+quit
+

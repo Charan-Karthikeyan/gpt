@@ -1,0 +1,7 @@
+parse p5 sort5.pddl
+compile p5_sort
+solve p5_sort
+generate graph p5.gml
+generate table p5.table
+shell make -f Makefile.p5_sort deep-clean
+quit

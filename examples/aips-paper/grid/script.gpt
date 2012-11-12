@@ -1,0 +1,22 @@
+parse p1 grid.pddl
+shell g++ -O3 -c grid.cc -I$GPTHOME/include
+linkmap grid.o
+compile p1_grid1
+solve p1_grid1
+generate graph p1.gml
+generate table p1.table
+shell make -f Makefile.p1_grid1 deep-clean
+parse p2 grid.pddl
+compile p2_grid2
+solve p2_grid2
+generate graph p2.gml
+generate table p2.table
+shell make -f Makefile.p2_grid2 deep-clean
+parse p3 grid.pddl
+compile p3_grid3
+solve p3_grid3
+generate graph p3.gml
+generate table p3.table
+shell make -f Makefile.p3_grid3 deep-clean
+shell rm grid.o
+quit

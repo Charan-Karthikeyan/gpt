@@ -1,0 +1,16 @@
+
+to compile gpt version do:
+
+make -f <makefile> clean
+make -f <makefile>
+
+where <makefile> is either Makefile.sun or Makefile.linux.
+
+BUGS
+----
+
+You might have a problem when compiling src/daedalus/daeLex.cc.
+This is due to a bug in Solaris lex program. To fix it, edit
+daeLex.cc by hand and replace the declaration of yylex() by
+"int yylex()". In my machine, the guilty line number is 138.
+

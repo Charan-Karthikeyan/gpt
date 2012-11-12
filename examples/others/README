@@ -1,0 +1,5 @@
+mdps:	examples of MDPs.
+ring1:	an encoding of a problem involving locks.
+ring2:	another encoding.
+sort:	synthesis of sorting algorithms.
+blocks: a simple blocks world problem using recursive logical def's.

@@ -1,0 +1,7 @@
+parse p4 sort4.pddl
+compile p4_sort
+solve p4_sort
+generate graph p4.gml
+generate table p4.table
+shell make -f Makefile.p4_sort deep-clean
+quit

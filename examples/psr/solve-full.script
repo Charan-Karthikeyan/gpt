@@ -1,0 +1,16 @@
+#!/usr/local/bin/bash
+
+
+# solve all problems in directory
+
+for prob in $*; do
+$GPTHOME/bin/gpt<<-end
+	set entry-point problemRegister__Fv
+	set discretization-levels off
+	set qmdp-discount 1.0
+	solve ${prob} ${prob}.output-full
+	generate graph ${prob}_full.gml
+	quit
+end
+done
+

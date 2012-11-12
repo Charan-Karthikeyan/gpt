@@ -1,0 +1,27 @@
+# GCC Compiler
+CFLAGS	=		-Wall -c -g -I.. -I../include/
+LDFLAGS =		-L../lib
+CC	=		g++ $(CFLAGS)
+LD	=		g++ $(LDFLAGS)
+
+# SUN Compilers
+#CFLAGS	=		-c -I.. -I../include -O2
+#LDFLAGS =		-L../lib
+#CC	=		/opt/SUNWspro/bin/CC $(CFLAGS)
+#LD	=		/opt/SUNWspro/bin/CC $(LDFLAGS)
+
+
+compile:
+		@echo "*** Compiling all in `pwd`"
+		@make -f Makefile.sun standard.o
+		@cp standard.o ../../lib
+
+
+standard.o:	standard.cc
+		$(CC) -c standard.cc
+
+
+clean:
+		@echo "*** Cleaning `pwd`"
+		@rm -fr *~ standard.o 
+

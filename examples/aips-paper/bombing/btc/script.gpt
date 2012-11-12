@@ -1,0 +1,6 @@
+parse p6 btc.pddl
+compile p6_btc
+solve p6_btc
+shell make -f Makefile.p6_btc deep-clean
+quit
+

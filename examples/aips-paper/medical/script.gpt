@@ -1,0 +1,8 @@
+parse p5 medical.pddl
+compile p5_medical
+solve p5_medical
+generate graph p5.gml
+generate table p5.table
+shell make -f Makefile.p5_medical deep-clean
+quit
+

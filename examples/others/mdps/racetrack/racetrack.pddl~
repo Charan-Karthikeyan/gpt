@@ -1,0 +1,48 @@
+(define (domain racetrack)
+  (:model (:dynamics :probabilistic) (:feedback :complete))
+  (:types STATE)
+  (:functions (x  STATE :integer[0,34])
+              (y  STATE :integer[0,11])
+              (dx STATE :integer[-5,5])
+              (dy STATE :integer[-5,5]))
+  (:external (valid :integer[0,34] :integer[0,11] :integer[0,34] :integer[0,11]))
+  ;(:external valid) 
+  (:objects state - STATE)
+
+  (:action control
+    :parameters ?ax ?ay - :integer[-1,1]
+    :effect
+      (:probabilistic
+         (1.0 (:when (valid (x state)
+                            (y state)
+                            (+ (x state) (+ (dx state) ?ax))
+		      	    (+ (y state) (+ (dy state) ?ay)))
+                 (:set (x state) (+ (x state) (+ (dx state) ?ax)))
+                 (:set (y state) (+ (y state) (+ (dy state) ?ay)))
+		 (:set (dx state) (+ (dx state) ?ax))
+		 (:set (dy state) (+ (dy state) ?ay)))
+	      (:when (:not (valid (x state)
+                                  (y state)
+                                  (+ (x state) (+ (dx state) ?ax))
+			          (+ (y state) (+ (dy state) ?ay))))
+                 (:set (dx state) 0)
+                 (:set (dy state) 0)))
+
+         (0.0 (:when (valid (x state) (y state) (+ (x state) (dx state)) (+ (y state) (dy state)))
+                 (:set (x state) (+ (x state) (dx state)))
+                 (:set (y state) (+ (y state) (dy state))))
+              (:when (:not (valid (x state) (y state) (+ (x state) (dx state)) (+ (y state) (dy state))))
+                 (:set (dx state) 0)
+                 (:set (dy state) 0)))))
+)
+
+
+(define (problem race)
+  (:domain racetrack)
+  (:init (:set (dx state) 0)
+         (:set (dy state) 0)
+         (:set (x state) 0)
+         (:set (y state) :in { 5 6 7 8 }))
+  (:goal (:and (= (y state) 0)
+               (:in (x state) { 32 33 34 })))
+)

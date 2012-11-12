@@ -1,0 +1,65 @@
+# GCC Compiler
+CFLAGS	=		-Wall -c -O3 -DNDEBUG -I.. -I../include/
+#CFLAGS	=		-Wall -c -g -I.. -I../include/
+LDFLAGS =		
+CC	=		g++ $(CFLAGS)
+LD	=		g++ $(LDFLAGS)
+
+M4	=		m4
+LEX	=		lex
+YACC	=		yacc
+OBJS	=		daeCodeGen.o daeAnalysis.o daeTypes.o daePackage.o daeStack.o daeErrors.o
+
+
+compile:
+			@echo "*** Compiling `pwd`"
+			@make -f Makefile.linux daedalus
+
+clean:
+			@echo "*** Cleaning `pwd`"
+			@rm -f daeParser.cc daeLex.cc
+			@rm -f core *~ *.o daedalus
+
+
+daedalus:		daeParser.o daeLex.o daeMain.o $(OBJS)
+			$(LD) -o daedalus daeParser.o daeLex.o daeMain.o $(OBJS) -lm
+
+daeMain.o:		daeMain.cc daeTypes.h daeTokens.h _daeErrors.h
+			$(CC) daeMain.cc
+
+daeParser.o:		daeParser.cc _daeErrors.h daeTypes.h
+			$(CC) daeParser.cc
+
+daeLex.o:		daeLex.cc daeTypes.h daeTokens.h
+			$(CC) daeLex.cc
+
+daeParser.cc:		daeParser.y
+			$(YACC) -d -v daeParser.y
+			mv y.tab.c daeParser.cc
+			mv y.tab.h daeTokens.h
+			mv y.output daeParser.output
+
+daeLex.cc:		daeLex.l
+			$(LEX) -t daeLex.l > daeLex.cc
+
+daeTypes.o:		daeTypes.cc daeTypes.h
+			$(CC) daeTypes.cc
+
+daeCodeGen.o:		daeCodeGen.cc daeTypes.h daeTokens.h
+			$(CC) daeCodeGen.cc
+
+daeAnalysis.o:		daeAnalysis.cc daeTypes.h daeTokens.h
+			$(CC) daeAnalysis.cc
+
+daePackage.o:		daePackage.cc daePackage.h daeTypes.h daeStack.h _daeErrors.h
+			$(CC) daePackage.cc
+
+daeErrors.o:		daeErrors.cc _daeErrors.h daeErrors.msg
+			$(CC) daeErrors.cc
+
+_daeErrors.h:		daeErrors.h daeErrors.msg
+			$(M4) daeErrors.h > _daeErrors.h
+
+daeStack.o:		daeStack.cc daeStack.h
+			$(CC) daeStack.cc
+

@@ -1,0 +1,9 @@
+parse p6 square.pddl
+shell g++ -c -O3 -c square.cc -I$GPTHOME/include
+linkmap square.o
+compile p6_square
+solve p6_square
+shell make -f Makefile.p6_square deep-clean
+shell rm square.o
+quit
+

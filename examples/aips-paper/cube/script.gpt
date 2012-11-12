@@ -1,0 +1,9 @@
+parse p6 cube.pddl
+shell g++ -c -O3 -c cube.cc -I$GPTHOME/include
+linkmap cube.o
+compile p6_cube
+solve p6_cube
+shell make -f Makefile.p6_cube deep-clean
+shell rm cube.o
+quit
+

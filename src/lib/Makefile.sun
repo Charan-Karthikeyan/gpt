@@ -1,0 +1,8 @@
+compile:
+
+clean:
+			@echo "*** Cleaning `pwd`"
+			@rm -f *.a
+
+.SILENT:
+

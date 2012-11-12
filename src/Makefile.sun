@@ -1,0 +1,16 @@
+SUBDIRS = lib lib-src pkg readline-4.2 daedalus theseus
+
+compile:
+		@echo "*** Compiling all in `pwd`"
+		@for dir in $(SUBDIRS); do \
+		  (cd $$dir ; make -f Makefile.sun compile) \
+		done
+
+
+clean:
+		@echo "*** Cleaning `pwd`"
+		@for dir in $(SUBDIRS); do \
+		  (cd $$dir ; make -f Makefile.sun clean) \
+		done
+
+

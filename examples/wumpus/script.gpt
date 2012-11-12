@@ -1,0 +1,6 @@
+parse p2 wumpus.pddl
+compile p2_wumpus
+solve p2_wumpus
+generate graph p2.gml
+!make -f Makefile.p2_wumpus deep-clean
+quit

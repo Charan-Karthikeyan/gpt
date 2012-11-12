@@ -1,0 +1,9 @@
+compile:
+		@echo "*** Compiling all in `pwd`"
+		@rm -f libreadline.a libhistory.a
+		@ln -s libreadline-4.2-sparc.a libreadline.a
+		@ln -s libhistory-4.2-sparc.a libhistory.a
+
+clean:
+		@echo "*** Cleaning `pwd`"
+		@rm -f libreadline.a libhistory.a

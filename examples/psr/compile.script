@@ -1,0 +1,21 @@
+#!/usr/local/bin/bash
+
+instance=$1
+domain=$2
+problem=$3
+
+$GPTHOME/bin/gpt<<-end
+	parse ${instance} ${domain} ${problem}
+	quit
+end
+
+object=`ls ${instance}*.h | cut -f1 -d\.`
+
+$GPTHOME/bin/gpt<<-end
+	set cc /usr/local/bin/g++
+	set ccflags -O3
+	compile ${object}
+	!rm Makefile.${object} ${object}-state.cc ${object}-state.o ${object}.h
+	quit
+end
+
