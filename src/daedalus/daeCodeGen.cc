@@ -2815,6 +2815,8 @@ problemClass::generateMakefile( FILE *out, char *MName )
   emit( out, "\t\t\t@rm -f %s\n", MName );
 }
 
+extern void genStateCode( FILE *, char *, FILE *, struct problem_s * );
+extern void genHeuristicCode( FILE *, char *, FILE *, struct problem_s * );
 
 void
 generateCode( FILE *HFile, char *HName, FILE *CFile, FILE *MFile, char *MName, problemClass *prob )
@@ -2828,9 +2830,6 @@ generateCode( FILE *HFile, char *HName, FILE *CFile, FILE *MFile, char *MName, p
   map<const char*,const predicateClass*,ltstr>::const_iterator it6;
   list<const char*>::const_iterator it7;
   set<const char*,ltstr>::const_iterator it8;
-
-  extern void genStateCode( FILE *, char *, FILE *, struct problem_s * );
-  extern void genHeuristicCode( FILE *, char *, FILE *, struct problem_s * );
 
   // set global data
   problem = prob;
