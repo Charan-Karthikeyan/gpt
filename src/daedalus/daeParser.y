@@ -139,6 +139,23 @@ static void                  cleanEnvironment( map<const char*,const typeClass*,
 static void                  printEnvironment( void ); 
 static list<map<const char*,const typeClass*,ltstr>*>* environmentClone( void );
 extern void                  generateCode( problemClass* );
+
+//
+// Function used by YACC to print syntax errors.
+//
+void
+yyerror( const char *s )
+{
+  extern int lineno;
+#ifdef sparc
+  extern char yytext[];      // needed in my g++/sparc
+#endif
+#ifdef linux
+  extern char *yytext;       // needed in my g++/linux
+#endif
+
+  insertFmtError( "%s:%d: %s before \"%s\"\n", basename( yyfile ), lineno, s, yytext );
+}
 %}
 
 /* reserved words */
@@ -1476,23 +1493,6 @@ rest_package      :  RIGHTPAR
 
 %%
 
-
-//
-// Function used by YACC to print syntax errors.
-//
-void
-yyerror( const char *s )
-{
-  extern int lineno;
-#ifdef sparc
-  extern char yytext[];      // needed in my g++/sparc
-#endif
-#ifdef linux
-  extern char *yytext;       // needed in my g++/linux
-#endif
-
-  insertFmtError( "%s:%d: %s before \"%s\"\n", basename( yyfile ), lineno, s, yytext );
-}
 
 //
 // Initialization of parsing process. We allocate primitive types and 
