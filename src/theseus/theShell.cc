@@ -621,7 +621,7 @@ static int   printFunction( int nargs, char** args )
 	  *terminal << "value     = " << entry->getValue() << endl;
 	  *terminal << "heuristic = " << hvalue << endl;
 	  *terminal << "goal      = " << PD.POMDP->inGoal((const beliefClass*)entry->getData()) << endl;
-	  *terminal << "solved    = " << (int)entry->getExtra() << endl;
+	  *terminal << "solved    = " << (intptr_t)entry->getExtra() << endl;
 	  *terminal << "action    = " << action;
 	  if( PD.pddlProblemType )
 	    {
@@ -632,7 +632,7 @@ static int   printFunction( int nargs, char** args )
 	  if( ISPOMDP(PD.handle->problemType) || ISNDPOMDP(PD.handle->problemType) )
 	    *terminal << "belief    = " << *(const beliefClass*)entry->getData() << endl;
 	  else if( ISMDP(PD.handle->problemType) || ISNDMDP(PD.handle->problemType) )
-	    *terminal << "state     = " << (int)entry->getData() << endl;
+	    *terminal << "state     = " << (intptr_t)entry->getData() << endl;
 	}
       else if( !strncasecmp( args[4], "actions", 7 ) )
 	{
@@ -726,7 +726,7 @@ static int   printFunction( int nargs, char** args )
 	      *terminal << "value     = " << entry->getValue() << endl;
 	      *terminal << "heuristic = " << hvalue << endl;
 	      *terminal << "goal      = " << PD.POMDP->inGoal((const beliefClass*)entry->getData()) << endl;
-	      *terminal << "solved    = " << (int)entry->getExtra() << endl;
+	      *terminal << "solved    = " << (intptr_t)entry->getExtra() << endl;
 	      *terminal << "action    = " << action;
 	      if( PD.pddlProblemType )
 		{
@@ -737,7 +737,7 @@ static int   printFunction( int nargs, char** args )
 	      if( ISPOMDP(PD.handle->problemType) || ISNDPOMDP(PD.handle->problemType) )
 		*terminal << "belief    = " << *(const beliefClass*)entry->getData() << endl;
 	      else if( ISMDP(PD.handle->problemType) || ISNDMDP(PD.handle->problemType) )
-		*terminal << "state     = " << (int)entry->getData() << endl;
+		*terminal << "state     = " << (intptr_t)entry->getData() << endl;
 	    }
 	}
     }

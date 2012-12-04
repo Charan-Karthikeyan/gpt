@@ -40,7 +40,7 @@ planningModelClass::setup( problemHandleClass *handle, beliefClass* (*belCtor)( 
     if( state->state->valid )
       {
 	++number;
-	belief->insert( (int)state, 1.0 );
+	belief->insert( (intptr_t)state, 1.0 );
       }
   assert( number == 1 );
   theInitialBelief = belief;

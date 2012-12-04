@@ -82,7 +82,7 @@ MDPPOMDPClass::expandBeliefWithAction( const hashEntryClass *entry, int action,
 				       deque<pair<pair<int,float>,const hashEntryClass*> > &result )
 {
   result.clear();
-  int state = (int)entry->getData();
+  int state = (intptr_t)entry->getData();
   map<int,float>::const_iterator it;
   assert( ((standardModelClass*)model)->transitionModel[action].find( state ) !=
 	  ((standardModelClass*)model)->transitionModel[action].end() );
@@ -108,7 +108,7 @@ MDPPOMDPClass::algorithm( bool learning, resultClass& result )
   assert( ISMDP(PD.handle->problemType) || ISNDMDP(PD.handle->problemType) );
 
   // initialize system
-  state = (int)theInitialBelief;
+  state = (intptr_t)theInitialBelief;
   hValue = hashValue( (beliefClass*)state );
   if( !(entry = beliefHash->lookup( (const void*)state )) )
     entry = beliefHash->insert( (void*)state, hValue->value );
@@ -260,7 +260,7 @@ MDPPOMDPClass::algorithm( bool learning, resultClass& result )
 		  for( it = closed.begin(); it != closed.end(); ++it )
 		    {
 		      (*it)->setExtra( (void*)true );
-		      *PD.outputFile << "solved state " << (int)(*it)->getData();
+		      *PD.outputFile << "solved state " << (intptr_t)(*it)->getData();
 		      *PD.outputFile << ", value = " << (*it)->getValue() << endl;
 		    }
 		}
@@ -282,7 +282,7 @@ MDPPOMDPClass::QValue( const beliefClass* belief, int action, bool useCache )
   register hashValueClass *hValue;
   map<int,float>::const_iterator it;
 
-  state = (int)belief;
+  state = (intptr_t)belief;
   if( applicable( state, action ) )
     {
       sum = 0.0;
@@ -332,7 +332,7 @@ MDPPOMDPClass::bestQValue( const beliefClass* belief, bool useCache )
   noBest = 1;
   ++expansions;
   result->numTies = 0;
-  state = (int)belief;
+  state = (intptr_t)belief;
   for( action = 0; action < numActions; ++action )
     if( applicable( state, action ) )
       {
@@ -359,7 +359,7 @@ MDPPOMDPClass::bestQValue( const beliefClass* belief, bool useCache )
 		throw( unsupportedModelExceptionClass( PD.handle->problemType ) );
 	      }
 	  }
-	sum = model->cost( (int)belief, action ) + discountFactor * sum;
+	sum = model->cost( (intptr_t)belief, action ) + discountFactor * sum;
 
 	// look for the best action
 	if( noBest || best( sum, result->value ) || (sum == result->value) )
@@ -404,7 +404,7 @@ MDPPOMDPClass::checkSolved( hashEntryClass *current, list<hashEntryClass*>& clos
       closed.push_front( current );
 
       // check epsilon condition 
-      state = (int)current->getData();
+      state = (intptr_t)current->getData();
       model->checkModelFor( state );
       QResult = bestQValue( (beliefClass*)state, true );
       if( QResult->numTies == 0 )

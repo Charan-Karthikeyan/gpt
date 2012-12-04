@@ -7,6 +7,8 @@
 #ifndef _theRtHash_INCLUDE
 #define _theRtHash_INCLUDE
 
+#include <inttypes.h>
+
 #include <theseus/theHash.h>
 #include <theseus/theRtStandard.h>
 
@@ -90,7 +92,7 @@ public:
   // hash functions (since this is a hashClass derived class)
   virtual unsigned   dataFunction( const void *data )
     {
-      return( (unsigned)data );
+      return( (uintptr_t)data );
     }
   virtual void*      dataCopy( const void *data )
     {
@@ -98,12 +100,12 @@ public:
     }
   virtual bool       dataCompare( const void *data1, const void *data2 )
     {
-      return( !((unsigned)data1 == (unsigned)data2) );
+      return( !((uintptr_t)data1 == (uintptr_t)data2) );
     }
   virtual void       dataDelete( void *data ) { }
   virtual void       dataPrint( ostream& os, const void *data )
     {
-      os << (unsigned)data;
+      os << (uintptr_t)data;
     }
 
   // serialization
@@ -196,7 +198,7 @@ public:
   // hash functions (since this is a hashClass derived class)
   virtual unsigned   dataFunction( const void *data )
     {
-      return( (unsigned)data );
+      return( (uintptr_t)data );
     }
   virtual void*      dataCopy( const void *data )
     {
@@ -204,12 +206,12 @@ public:
     }
   virtual bool       dataCompare( const void *data1, const void *data2 )
     {
-      return( !((unsigned)data1 == (unsigned)data2) );
+      return( !((uintptr_t)data1 == (uintptr_t)data2) );
     }
   virtual void       dataDelete( void *data ) { }
   virtual void       dataPrint( ostream& os, const void *data )
     {
-      os << (unsigned)data;
+      os << (uintptr_t)data;
     }
 
   // serialization

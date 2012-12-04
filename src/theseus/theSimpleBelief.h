@@ -10,6 +10,8 @@
 #include <iostream>
 #include <map>
 
+#include <inttypes.h>
+
 #include <theseus/theBelief.h>
 #include <theseus/theStandardModel.h>
 
@@ -185,7 +187,7 @@ public:
     }
   virtual unsigned                 dataFunction( const void* data )
     {
-      return( (unsigned)data );
+      return( (uintptr_t)data );
     }
   virtual void*                    dataCopy( const void* data )
     {
@@ -198,11 +200,11 @@ public:
   virtual void                     dataDelete( void* data ) { }
   virtual void                     dataPrint( ostream& os, const void* data )
     {
-      os << (unsigned)data;
+      os << (uintptr_t)data;
     } 
   virtual void                     dataWrite( ostream& os, const void* data ) const
     {
-      os << (unsigned)data;
+      os << (uintptr_t)data;
     }
   virtual void*                    dataRead( istream& is )
     {

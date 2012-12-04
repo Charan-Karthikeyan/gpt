@@ -70,7 +70,7 @@ public:
     }
   virtual float                 cost( const beliefClass *belief, int action ) const
     {
-      return( model->cost( (int)belief, action ) );
+      return( model->cost( (intptr_t)belief, action ) );
     }
   virtual bool                  inGoal( int state ) const
     {
@@ -78,7 +78,7 @@ public:
     }
   virtual bool                  inGoal( const beliefClass* belief ) const
     {
-      return( model->inGoal( (int)belief ) );
+      return( model->inGoal( (intptr_t)belief ) );
     }
   virtual bool                  applicable( int state, int action ) const
     {
@@ -86,7 +86,7 @@ public:
     }
   virtual bool                  applicable( const beliefClass* belief, int action ) const
     {
-      return( model->applicable( (int)belief, action ) );
+      return( model->applicable( (intptr_t)belief, action ) );
     }
   virtual int                   getInitialState( const beliefClass* belief ) const
     {

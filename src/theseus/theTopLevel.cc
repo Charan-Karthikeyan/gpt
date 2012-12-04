@@ -1036,7 +1036,7 @@ solvePddlProblem( void )
           case problemHandleClass::PROBLEM_MDP:
           case problemHandleClass::PROBLEM_ND_MDP:
             map<int,float>::const_iterator it;
-            int  state = (int)PD.POMDP->getTheInitialBelief()->getData();
+            int  state = (intptr_t)PD.POMDP->getTheInitialBelief()->getData();
             for( it = ((standardModelClass*)PD.model)->transitionModel[0][state].begin();
                  it != ((standardModelClass*)PD.model)->transitionModel[0][state].end();
                  ++it ) {
@@ -1257,7 +1257,7 @@ policyGraphClass::generatePolicyGraph( void )
   policyTableNodeClass root;
   if( PD.pddlProblemType && (ISMDP(PD.handle->problemType) || ISNDMDP(PD.handle->problemType)) ) {
     map<int,float>::const_iterator it;
-    int state = (int)PD.POMDP->getTheInitialBelief()->getData();
+    int state = (intptr_t)PD.POMDP->getTheInitialBelief()->getData();
     for( it = ((standardModelClass*)PD.model)->transitionModel[0][state].begin();
          it != ((standardModelClass*)PD.model)->transitionModel[0][state].end();
          ++it ) {
@@ -1378,7 +1378,7 @@ policyTableClass::generatePolicyTableAux( policyTableNodeClass& node )
 
   nodes.insert( node );
   if( PD.pddlProblemType && (ISMDP(PD.handle->problemType) || ISNDMDP(PD.handle->problemType)) ) {
-    states.insert( (int)node.second->getData() );
+    states.insert( (intptr_t)node.second->getData() );
     if( PD.POMDP->inGoal( (const beliefClass*)node.second->getData() ) ) {
       goals.insert( node );
       return;
@@ -1423,7 +1423,7 @@ policyTableClass::generatePolicyTable( void )
   if( PD.pddlProblemType && (ISMDP(PD.handle->problemType) || ISNDMDP(PD.handle->problemType)) ) {
     map<int,float>::const_iterator it;
     const hashEntryClass* entry = PD.POMDP->getTheInitialBelief();
-    int state = (int)entry->getData();
+    int state = (intptr_t)entry->getData();
     int action = PD.POMDP->getBestAction( entry );
     for( it = ((standardModelClass*)PD.model)->transitionModel[action][state].begin();
          it != ((standardModelClass*)PD.model)->transitionModel[action][state].end(); ++it ) {
@@ -1459,7 +1459,7 @@ policyTableClass::outputPolicyTable( ostream &out )
   out << "*****  POLICY  *****" << std::endl << std::endl;
   for( node_it = nodes.begin(); node_it != nodes.end(); ++node_it ) {
     if( PD.pddlProblemType && (ISMDP(PD.handle->problemType) || ISNDMDP(PD.handle->problemType)) )
-      out << "(" << (int)(*node_it).second->getData() << ",";
+      out << "(" << (intptr_t)(*node_it).second->getData() << ",";
     else
       out << "(" << *(const beliefClass*)(*node_it).second->getData() << ",";
 

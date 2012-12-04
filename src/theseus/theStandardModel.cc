@@ -539,7 +539,7 @@ standardModelClass::computeModelFor( int sIndex, list<int> &newStates )
 	  else
 	    {
 #ifndef ALTERNATE_HASH
-	      statePrimeIndex = (int)entry->getExtra();
+	      statePrimeIndex = (intptr_t)entry->getExtra();
 #else
 	      statePrimeIndex = (int)node->children;
 #endif
@@ -589,7 +589,7 @@ standardModelClass::computeModelFor( int sIndex, list<int> &newStates )
 			  }
 			else
 			  {
-			    observation = (int) entry->getExtra();
+			    observation = (intptr_t) entry->getExtra();
 			  }
 
 			// insert observation into model
